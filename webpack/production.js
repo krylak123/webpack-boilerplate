@@ -11,7 +11,19 @@ module.exports = {
         rules: [
             {
                 test: /\.(sass|scss)$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [require('autoprefixer'),],
+                            },
+                        },
+                    },
+                    'sass-loader'
+                ],
             },
             {
                 test: /\.(png|jpg|svg|gif|jpeg)$/,
