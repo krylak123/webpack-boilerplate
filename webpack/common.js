@@ -20,6 +20,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: 'public/template.html',
+            inject: 'body',
         }),
     ],
 };
