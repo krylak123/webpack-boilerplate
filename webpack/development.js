@@ -1,9 +1,11 @@
 const path = require('path');
 
 module.exports = {
-    devtool: "source-map",
+    target: "web",
+    devtool: 'inline-source-map',
     devServer: {
         open: true,
+		hot: true,
         contentBase: path.resolve(__dirname, '../', 'public'),
     },
     output: {
