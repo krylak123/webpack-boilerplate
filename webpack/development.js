@@ -1,33 +1,37 @@
 const path = require('path');
 
 module.exports = {
-    target: "web",
+    mode: 'development',
     devtool: 'inline-source-map',
+    output: {
+        path: path.resolve(__dirname, '../', 'build'),
+        publicPath: '/',
+        filename: 'js/[name].bundle.js',
+        assetModuleFilename: 'images/[name].[ext][query]',
+    },
     devServer: {
         open: true,
-		hot: true,
+        hot: true,
         contentBase: path.resolve(__dirname, '../', 'public'),
-    },
-    output: {
-        filename: 'js/[name].js',
-        path: path.resolve(__dirname, '../', 'build'),
-        sourceMapFilename: "[name].js.map",
     },
     module: {
         rules: [
             {
                 test: /\.(sass|scss)$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
-            },
-            {
-                test: /\.(png|jpg|svg|gif|jpeg)$/,
                 use: [
                     {
-                        loader: 'file-loader',
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
                         options: {
-                            name: '[name].[ext]',
-                            outputPath: 'images',
-                            publicPath: '../images',
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
                         },
                     },
                 ],

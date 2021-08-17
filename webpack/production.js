@@ -1,49 +1,38 @@
 const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
+    mode: 'production',
+    devtool: false,
     output: {
-        filename: 'js/[name]-[contenthash].js',
         path: path.resolve(__dirname, '../', 'build'),
+        publicPath: '/',
+        filename: 'bundle-assets/js/[name]-[contenthash].bundle.js',
+        assetModuleFilename:
+            'bundle-assets/images/[contenthash].bundle[ext][query]',
     },
     module: {
         rules: [
             {
                 test: /\.(sass|scss)$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
                     {
                         loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                                plugins: [require('autoprefixer'),],
+                                plugins: ['postcss-preset-env'],
                             },
                         },
                     },
-                    'sass-loader'
-                ],
-            },
-            {
-                test: /\.(png|jpg|svg|gif|jpeg)$/,
-                use: [
                     {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name]-[contenthash].[ext]',
-                            outputPath: 'images',
-                            publicPath: '../images',
-                        },
-                    },
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            mozjpeg: {
-                                progressive: true,
-                            },
-                        }
+                        loader: 'sass-loader',
                     },
                 ],
             },
@@ -51,15 +40,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'css/[name]-[contenthash].css',
-        }),
-        new CopyPlugin({
-            patterns: [
-                {
-                    from: 'public/images',
-                    to: 'images',
-                },
-            ],
+            filename: 'bundle-assets/css/[name]-[contenthash].bundle.css',
         }),
     ],
 };
