@@ -7,7 +7,6 @@ module.exports = {
     devtool: false,
     output: {
         path: path.resolve(__dirname, '../', 'build'),
-        publicPath: '/',
         filename: 'bundle-assets/js/[name]-[contenthash].bundle.js',
         assetModuleFilename:
             'bundle-assets/images/[contenthash].bundle[ext][query]',
