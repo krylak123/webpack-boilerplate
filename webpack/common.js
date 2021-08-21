@@ -27,7 +27,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new CopyPlugin({
-            patterns: [{ from: 'public/icons', to: 'public-assets' }],
+            patterns: [{ from: 'public/icons', to: 'public' }],
         }),
         new HtmlWebpackPlugin({
             template: 'public/index.html',

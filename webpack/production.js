@@ -7,9 +7,8 @@ module.exports = {
     devtool: false,
     output: {
         path: path.resolve(__dirname, '../', 'build'),
-        filename: 'bundle-assets/js/[name]-[contenthash].bundle.js',
-        assetModuleFilename:
-            'bundle-assets/images/[contenthash].bundle[ext][query]',
+        filename: 'static/js/[name]-[contenthash].bundle.js',
+        assetModuleFilename: 'static/images/[contenthash].bundle[ext][query]',
     },
     module: {
         rules: [
@@ -39,7 +38,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'bundle-assets/css/[name]-[contenthash].bundle.css',
+            filename: 'static/css/[name]-[contenthash].bundle.css',
         }),
     ],
 };
