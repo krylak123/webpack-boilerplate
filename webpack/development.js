@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  target: 'web',
   mode: 'development',
   devtool: 'inline-source-map',
   output: {
