@@ -13,7 +13,7 @@ module.exports = {
   devServer: {
     open: true,
     hot: true,
-    contentBase: path.resolve(__dirname, '../', 'public'),
+    static: path.resolve(__dirname, '../', 'public'),
   },
   module: {
     rules: [
